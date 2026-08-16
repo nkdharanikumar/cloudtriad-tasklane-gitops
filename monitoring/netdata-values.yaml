@@ -1,0 +1,28 @@
+parent:
+  enabled: true
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 250m
+      memory: 384Mi
+
+replicaCount: 1
+
+deploymentStrategy:
+  type: Recreate
+
+sd:
+  child:
+    enabled: true
+    resources:
+      requests:
+        cpu: 25m
+        memory: 50Mi
+      limits:
+        cpu: 50m
+        memory: 100Mi
+ingress:
+  enabled: false
