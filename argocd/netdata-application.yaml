@@ -3,17 +3,25 @@ kind: Application
 metadata:
   name: tasklane-netdata
   namespace: argocd
+
 spec:
   project: default
 
-  source:
-    repoURL: https://netdata.github.io/helmchart/
-    chart: netdata
-    targetRevision: 3.7.171
+  sources:
 
-    helm:
-      valueFiles:
-        - $values/monitoring/netdata-values.yaml
+    # Netdata Helm chart
+    - repoURL: https://netdata.github.io/helmchart/
+      chart: netdata
+      targetRevision: 3.7.171
+
+      helm:
+        valueFiles:
+          - $values/monitoring/netdata-values.yaml
+
+    # Our GitOps repository containing the values file
+    - repoURL: https://github.com/nkdharanikumar/cloudtriad-tasklane-gitops.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
