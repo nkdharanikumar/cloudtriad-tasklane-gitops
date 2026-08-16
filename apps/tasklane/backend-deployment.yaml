@@ -19,7 +19,7 @@ spec:
       containers:
         - name: backend
 
-          image: 904325153322.dkr.ecr.ap-south-1.amazonaws.com/cloudtriad-tasklane-backend:v1
+          image: 904325153322.dkr.ecr.ap-south-1.amazonaws.com/cloudtriad-tasklane-backend:5a8f39c8e615b3e139918e97abbcd1abe8c6495b
           imagePullPolicy: Always
 
           ports:

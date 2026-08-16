@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 904325153322.dkr.ecr.ap-south-1.amazonaws.com/cloudtriad-tasklane-frontend:v2
+          image: 904325153322.dkr.ecr.ap-south-1.amazonaws.com/cloudtriad-tasklane-frontend:5a8f39c8e615b3e139918e97abbcd1abe8c6495b
           imagePullPolicy: Always
           ports:
             - containerPort: 80
