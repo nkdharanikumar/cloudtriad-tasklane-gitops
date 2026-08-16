@@ -1,50 +1,52 @@
-alertmanager:
-  enabled: false
+kube-prometheus-stack:
 
-prometheus:
-  enabled: true
+  alertmanager:
+    enabled: false
 
-  prometheusSpec:
+  prometheus:
+    enabled: true
+
+    prometheusSpec:
+      replicas: 1
+      retention: 3d
+
+      resources:
+        requests:
+          cpu: 50m
+          memory: 256Mi
+        limits:
+          cpu: 250m
+          memory: 512Mi
+
+  grafana:
+    enabled: true
+
     replicas: 1
-    retention: 3d
 
     resources:
       requests:
-        cpu: 50m
-        memory: 256Mi
+        cpu: 20m
+        memory: 128Mi
       limits:
-        cpu: 250m
-        memory: 512Mi
+        cpu: 200m
+        memory: 384Mi
 
-grafana:
-  enabled: true
+    persistence:
+      enabled: false
 
-  replicas: 1
+    defaultDashboardsEnabled: true
 
-  resources:
-    requests:
-      cpu: 20m
-      memory: 128Mi
-    limits:
-      cpu: 200m
-      memory: 384Mi
+  kubeStateMetrics:
+    enabled: true
 
-  persistence:
-    enabled: false
+  nodeExporter:
+    enabled: true
 
-  defaultDashboardsEnabled: true
-
-kubeStateMetrics:
-  enabled: true
-
-nodeExporter:
-  enabled: true
-
-prometheusOperator:
-  resources:
-    requests:
-      cpu: 20m
-      memory: 64Mi
-    limits:
-      cpu: 100m
-      memory: 128Mi
+  prometheusOperator:
+    resources:
+      requests:
+        cpu: 20m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
