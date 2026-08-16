@@ -1,6 +1,3 @@
-# Tasklane - lightweight observability stack
-# Designed for a single-node EKS learning environment.
-
 alertmanager:
   enabled: false
 
