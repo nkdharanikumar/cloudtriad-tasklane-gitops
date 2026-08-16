@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tasklane
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/nkdharanikumar/cloudtriad-tasklane-gitops.git
+    targetRevision: main
+    path: apps/tasklane
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tasklane
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasklane-frontend
+  namespace: tasklane
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasklane-frontend
+  template:
+    metadata:
+      labels:
+        app: tasklane-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: 904325153322.dkr.ecr.ap-south-1.amazonaws.com/cloudtriad-tasklane-frontend:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 20
